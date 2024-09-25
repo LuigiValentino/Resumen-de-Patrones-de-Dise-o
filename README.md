@@ -3,258 +3,166 @@
 ## Patrones Creacionales
 
 ### 1. Singleton
-- **Qué hace**: Garantiza que una clase solo tenga una instancia y proporciona un punto de acceso global a esa instancia.
-- **Ejemplo**: Gestor de conexiones a bases de datos, Logger (registro de logs).
-- **Ventajas**:
-  - Control estricto sobre la creación de instancias.
-  - Uso eficiente de recursos compartidos.
-- **Desventajas**:
-  - Dificulta las pruebas unitarias debido a su naturaleza global.
-  - Puede violar el principio de responsabilidad única.
-- **Alternativas**: Fábrica simple o inyección de dependencias.
-- **Casos de uso**: Bases de datos, sistemas de logs, gestores de configuración.
+- **Qué hace**: Asegura que una clase solo tenga una instancia y ofrece un acceso global a ella.
+- **Ejemplo**: Logger, gestor de conexiones de base de datos.
+- **Ventajas**: Control sobre instancias y uso eficiente de recursos.
+- **Desventajas**: Dificulta pruebas unitarias y puede romper la responsabilidad única.
+- **Casos de uso**: Logs, configuraciones compartidas, conexión a BD.
 
 ### 2. Factory Method
-- **Qué hace**: Define una interfaz para crear objetos, pero permite que las subclases decidan qué clase concreta instanciar.
-- **Ejemplo**: Clases que representan vehículos, como autos y camiones.
-- **Ventajas**:
-  - Promueve el principio de inversión de dependencias.
-  - Permite la creación de objetos sin acoplamiento fuerte con clases concretas.
-- **Desventajas**:
-  - Puede introducir una mayor cantidad de clases debido a las subclases creadoras.
-- **Alternativas**: Abstract Factory si necesitas crear familias de objetos.
-- **Casos de uso**: Cuando una clase no puede anticipar la clase de los objetos que debe crear.
+- **Qué hace**: Define una interfaz para crear objetos, dejando que las subclases elijan el tipo de objeto a crear.
+- **Ejemplo**: Vehículos (autos, camiones).
+- **Ventajas**: Desacopla la creación de objetos y promueve la flexibilidad.
+- **Desventajas**: Aumenta la cantidad de subclases.
+- **Casos de uso**: Crear objetos cuando no se conoce de antemano su clase concreta.
 
 ### 3. Abstract Factory
-- **Qué hace**: Proporciona una interfaz para crear familias de objetos relacionados o dependientes sin especificar las clases concretas.
-- **Ejemplo**: Componentes de GUI (ventanas, botones) para distintos sistemas operativos (Windows, MacOS, Linux).
-- **Ventajas**:
-  - Garantiza la compatibilidad entre los productos creados.
-  - Permite sustituir fácilmente una familia de productos.
-- **Desventajas**:
-  - Aumenta la complejidad debido a la creación de más interfaces y clases.
-- **Alternativas**: Factory Method si solo necesitas crear un tipo de objeto.
-- **Casos de uso**: Sistemas modulares que necesitan configurarse dinámicamente, como sistemas de interfaces gráficas.
+- **Qué hace**: Crea familias de objetos relacionados sin especificar sus clases concretas.
+- **Ejemplo**: Componentes de GUI para Windows, MacOS y Linux.
+- **Ventajas**: Garantiza la compatibilidad entre productos relacionados.
+- **Desventajas**: Aumenta la complejidad con muchas interfaces y clases.
+- **Casos de uso**: Sistemas modulares que requieren configurar familias de objetos.
 
 ### 4. Builder
-- **Qué hace**: Separa la construcción de un objeto complejo de su representación, permitiendo que el mismo proceso de construcción pueda crear diferentes representaciones.
-- **Ejemplo**: Construcción de un automóvil con configuraciones personalizadas (color, motor, etc.).
-- **Ventajas**:
-  - Mejora la claridad en la construcción de objetos complejos.
-  - Permite la reutilización del proceso de construcción.
-- **Desventajas**:
-  - Aumenta la complejidad cuando solo se necesita construir un objeto simple.
-- **Alternativas**: Constructor estándar si el objeto no es tan complejo.
-- **Casos de uso**: Creación de objetos con múltiples configuraciones, como un formulario complejo o un asistente de instalación.
+- **Qué hace**: Permite construir objetos complejos paso a paso.
+- **Ejemplo**: Automóviles personalizados (color, motor, accesorios).
+- **Ventajas**: Facilita la creación de objetos complejos de manera legible.
+- **Desventajas**: Añade complejidad innecesaria si el objeto es simple.
+- **Casos de uso**: Objetos con muchas opciones de configuración.
 
 ### 5. Prototype
-- **Qué hace**: Permite copiar objetos existentes sin que el código dependa de sus clases.
-- **Ejemplo**: Duplicación de objetos en videojuegos (enemigos, edificios).
-- **Ventajas**:
-  - Mejora el rendimiento al evitar la creación de objetos desde cero.
-  - Elimina la necesidad de conocer la clase exacta del objeto.
-- **Desventajas**:
-  - Puede ser difícil implementar la clonación en objetos complejos.
-- **Alternativas**: Factory Method si no es necesario clonar instancias existentes.
-- **Casos de uso**: Duplicación de objetos configurados, como formularios predefinidos o estados guardados en juegos.
+- **Qué hace**: Clona objetos existentes para crear nuevos, sin depender de sus clases.
+- **Ejemplo**: Clonar enemigos en un videojuego.
+- **Ventajas**: Mejora el rendimiento al evitar la creación desde cero.
+- **Desventajas**: Difícil de implementar con objetos complejos.
+- **Casos de uso**: Duplicar objetos preconfigurados.
 
 ## Patrones Estructurales
 
 ### 6. Adapter
-- **Qué hace**: Permite que clases con interfaces incompatibles trabajen juntas mediante una clase intermediaria que actúa como traductora.
-- **Ejemplo**: Integración de una nueva biblioteca de gráficos con un sistema antiguo.
-- **Ventajas**:
-  - Facilita la reutilización de código existente.
-  - Mejora la flexibilidad al separar interfaces y lógica.
-- **Desventajas**:
-  - Puede aumentar la complejidad del código.
-- **Alternativas**: Facade si solo deseas simplificar una interfaz compleja.
-- **Casos de uso**: Integración de sistemas antiguos con nuevas bibliotecas o tecnologías.
+- **Qué hace**: Permite que clases con interfaces distintas trabajen juntas.
+- **Ejemplo**: Integrar una biblioteca nueva en un sistema existente.
+- **Ventajas**: Reutiliza código existente y mejora la flexibilidad.
+- **Desventajas**: Aumenta la complejidad del sistema.
+- **Casos de uso**: Integrar sistemas antiguos con tecnologías nuevas.
 
 ### 7. Bridge
-- **Qué hace**: Desacopla una abstracción de su implementación, permitiendo que ambas evolucionen de manera independiente.
-- **Ejemplo**: Sistema de controles remotos que puede ser utilizado en televisores de diferentes marcas.
-- **Ventajas**:
-  - Permite cambiar o extender las implementaciones sin afectar a las abstracciones.
-  - Favorece la flexibilidad y la escalabilidad.
-- **Desventajas**:
-  - Introduce más clases y capas, lo que puede complicar el diseño.
-- **Alternativas**: Strategy si deseas variar comportamientos dinámicamente.
-- **Casos de uso**: Interfaces gráficas que deben funcionar con múltiples dispositivos o bases de datos.
+- **Qué hace**: Separa una abstracción de su implementación, permitiendo que evolucionen por separado.
+- **Ejemplo**: Controles remotos que funcionan en distintos dispositivos.
+- **Ventajas**: Flexibilidad al cambiar abstracción o implementación sin afectar la otra.
+- **Desventajas**: Introduce más clases y capas de abstracción.
+- **Casos de uso**: Sistemas que requieren ser escalables con diferentes implementaciones.
 
 ### 8. Composite
-- **Qué hace**: Compone objetos en estructuras de árbol para representar jerarquías parte-todo, permitiendo que los clientes traten a los objetos individuales y compuestos de manera uniforme.
-- **Ejemplo**: Sistemas de menús en aplicaciones, donde cada menú puede contener submenús.
-- **Ventajas**:
-  - Permite tratar a los objetos y las composiciones de manera uniforme.
-  - Facilita la gestión de estructuras jerárquicas complejas.
-- **Desventajas**:
-  - La complejidad del código puede aumentar si no se maneja bien.
-- **Alternativas**: Decorator si solo quieres agregar comportamientos adicionales.
-- **Casos de uso**: Representación de estructuras jerárquicas como archivos y carpetas, menús y submenús.
+- **Qué hace**: Componer objetos en estructuras de árbol para tratar objetos individuales y compuestos de manera uniforme.
+- **Ejemplo**: Menús en una aplicación, con submenús.
+- **Ventajas**: Manejo sencillo de jerarquías complejas.
+- **Desventajas**: Aumenta la complejidad si no se gestiona adecuadamente.
+- **Casos de uso**: Representar jerarquías como carpetas y archivos.
 
 ### 9. Decorator
-- **Qué hace**: Agrega responsabilidades adicionales a un objeto de manera dinámica sin alterar su estructura.
-- **Ejemplo**: Sistema de cafés, donde se pueden agregar ingredientes adicionales (como leche o chocolate) sin cambiar la clase del café.
-- **Ventajas**:
-  - Ofrece una forma flexible de extender la funcionalidad de objetos individuales.
-  - Cumple con el principio de responsabilidad única.
-- **Desventajas**:
-  - Aumenta la complejidad del código debido a la gran cantidad de clases envoltorio.
-- **Alternativas**: Usar herencia si las responsabilidades adicionales son conocidas de antemano.
-- **Casos de uso**: Sistemas de personalización de productos, como configuraciones de autos o pedidos de café.
+- **Qué hace**: Añade funcionalidades adicionales a un objeto de manera dinámica.
+- **Ejemplo**: Agregar ingredientes a un café (leche, chocolate) sin cambiar la clase base.
+- **Ventajas**: Extiende funcionalidad sin usar herencia.
+- **Desventajas**: Aumenta la complejidad del código.
+- **Casos de uso**: Personalización de objetos.
 
 ### 10. Facade
-- **Qué hace**: Proporciona una interfaz simplificada a un conjunto de interfaces en un subsistema.
-- **Ejemplo**: Proporcionar una interfaz simple para trabajar con un sistema complejo de bibliotecas gráficas.
-- **Ventajas**:
-  - Reduce la complejidad para los usuarios del subsistema.
-  - Separa los detalles de implementación de la interfaz pública.
-- **Desventajas**:
-  - Puede ocultar demasiada funcionalidad del sistema subyacente.
-- **Alternativas**: Adapter si necesitas ajustar la interfaz existente.
-- **Casos de uso**: Simplificación de bibliotecas complejas o sistemas de trabajo en múltiples capas.
+- **Qué hace**: Proporciona una interfaz simplificada para un sistema complejo.
+- **Ejemplo**: Simplificar el acceso a una biblioteca gráfica.
+- **Ventajas**: Reduce la complejidad para los usuarios del subsistema.
+- **Desventajas**: Puede ocultar demasiada funcionalidad.
+- **Casos de uso**: Simplificar subsistemas complejos.
 
 ### 11. Flyweight
-- **Qué hace**: Usa el almacenamiento compartido para minimizar el uso de memoria por objetos similares.
-- **Ejemplo**: Sistemas de gráficos donde muchos objetos comparten la misma representación visual.
-- **Ventajas**:
-  - Ahorra memoria y mejora el rendimiento.
-  - Reduce la duplicación de datos.
-- **Desventajas**:
-  - Puede complicar la gestión del estado de los objetos compartidos.
-- **Alternativas**: Singleton si necesitas una única instancia global.
-- **Casos de uso**: Sistemas gráficos, procesamiento de texto donde múltiples caracteres comparten la misma representación.
+- **Qué hace**: Optimiza el uso de memoria compartiendo datos entre objetos similares.
+- **Ejemplo**: Representación de caracteres en un procesador de texto.
+- **Ventajas**: Ahorra memoria en sistemas con muchos objetos similares.
+- **Desventajas**: Complica la gestión del estado de los objetos.
+- **Casos de uso**: Sistemas gráficos o texto.
 
 ### 12. Proxy
-- **Qué hace**: Proporciona un sustituto o representante de otro objeto para controlar el acceso a este.
-- **Ejemplo**: Proxy de seguridad que controla el acceso a un objeto real.
-- **Ventajas**:
-  - Proporciona control sobre el acceso a objetos sensibles o costosos de crear.
-  - Puede mejorar el rendimiento con proxies perezosos o remotos.
-- **Desventajas**:
-  - Introduce complejidad adicional en el sistema.
-- **Alternativas**: Facade si solo necesitas simplificar una interfaz.
-- **Casos de uso**: Control de acceso, proxies de seguridad, proxies remotos.
+- **Qué hace**: Proporciona un intermediario para controlar el acceso a un objeto.
+- **Ejemplo**: Proxy de seguridad que controla el acceso a recursos sensibles.
+- **Ventajas**: Controla el acceso y mejora el rendimiento.
+- **Desventajas**: Añade complejidad al sistema.
+- **Casos de uso**: Control de acceso o proxies remotos.
 
 ## Patrones Comportamentales
 
 ### 13. Chain of Responsibility
-- **Qué hace**: Permite que más de un objeto maneje una petición, pasando la petición a lo largo de una cadena de manejadores.
-- **Ejemplo**: Sistema de manejo de solicitudes de soporte, donde diferentes niveles de soporte pueden manejar la solicitud.
-- **Ventajas**:
-  - Desacopla los emisores de las solicitudes de los manejadores.
-  - Ofrece flexibilidad para agregar o eliminar manejadores.
-- **Desventajas**:
-  - No garantiza que la solicitud será manejada.
-- **Alternativas**: Command si deseas encapsular las solicitudes en objetos.
-- **Casos de uso**: Manejo de eventos o solicitudes jerárquicas como sistemas de atención al cliente.
+- **Qué hace**: Pasa una solicitud a lo largo de una cadena de objetos hasta que se maneja.
+- **Ejemplo**: Sistema de soporte técnico con distintos niveles de asistencia.
+- **Ventajas**: Desacopla el remitente de la solicitud del receptor.
+- **Desventajas**: No garantiza que la solicitud será manejada.
+- **Casos de uso**: Manejo de eventos o solicitudes en cascada.
 
 ### 14. Command
-- **Qué hace**: Encapsula una petición como un objeto, permitiendo parametrizar a los clientes con distintas peticiones.
-- **Ejemplo**: Un sistema de menú que permite deshacer y rehacer acciones.
-- **Ventajas**:
-  - Proporciona un mecanismo para deshacer y rehacer operaciones.
-  - Desacopla al cliente que emite las peticiones del objeto que las ejecuta.
-- **Desventajas**:
-  - Aumenta el número de clases al tener que definir una clase de comando para cada acción.
-- **Alternativas**: Mediator si deseas controlar la interacción entre varios objetos.
-- **Casos de uso**: Sistemas con operaciones que necesitan ser deshechas o aplazadas, como editores de texto o sistemas transaccionales.
+- **Qué hace**: Encapsula una acción como un objeto para parametrizar otras acciones.
+- **Ejemplo**: Menú que permite deshacer y rehacer acciones.
+- **Ventajas**: Desacopla el emisor de la acción del objeto que la ejecuta.
+- **Desventajas**: Aumenta la cantidad de clases.
+- **Casos de uso**: Implementar deshacer/rehacer o aplazar operaciones.
 
 ### 15. Interpreter
-- **Qué hace**: Dada una gramática, define una representación para interpretar sentencias en dicho lenguaje.
-- **Ejemplo**: Interpretación de expresiones matemáticas o lenguajes específicos de dominio.
-- **Ventajas**:
-  - Proporciona una forma estructurada para evaluar o interpretar expresiones.
-- **Desventajas**:
-  - El uso de este patrón puede ser ineficiente para gramáticas complejas.
-- **Alternativas**: Usar un parser o compilador si el lenguaje es demasiado complejo.
+- **Qué hace**: Define cómo interpretar sentencias en un lenguaje específico.
+- **Ejemplo**: Interpretación de expresiones matemáticas.
+- **Ventajas**: Proporciona una manera estructurada para evaluar expresiones.
+- **Desventajas**: Ineficiente para gramáticas complejas.
 - **Casos de uso**: Lenguajes específicos de dominio o motores de reglas.
 
 ### 16. Iterator
-- **Qué hace**: Proporciona una forma de acceder secuencialmente a los elementos de un agregado sin exponer su representación subyacente.
-- **Ejemplo**: Recorriendo una lista de elementos o una colección.
-- **Ventajas**:
-  - Simplifica el recorrido de colecciones complejas.
-  - Aísla la lógica de recorrido de la lógica de la colección.
-- **Desventajas**:
-  - Puede no ser eficiente si se utiliza en colecciones muy grandes sin optimización.
-- **Alternativas**: Foreach loops si la colección es sencilla.
-- **Casos de uso**: Recorrido de listas, árboles o colecciones en general.
+- **Qué hace**: Permite recorrer los elementos de una colección sin exponer su representación interna.
+- **Ejemplo**: Recorrer una lista o un conjunto.
+- **Ventajas**: Facilita el recorrido de estructuras complejas.
+- **Desventajas**: Puede ser ineficiente en colecciones muy grandes.
+- **Casos de uso**: Recorrer listas, árboles o cualquier colección.
 
 ### 17. Mediator
-- **Qué hace**: Define un objeto que encapsula cómo interactúan un conjunto de objetos, promoviendo el desacoplamiento.
-- **Ejemplo**: Un sistema de chat donde el servidor actúa como mediador entre los usuarios.
-- **Ventajas**:
-  - Desacopla los objetos entre sí al centralizar su interacción.
-  - Facilita el mantenimiento y la escalabilidad.
-- **Desventajas**:
-  - El mediador puede convertirse en un punto único de fallo o cuello de botella.
-- **Alternativas**: Observer si solo necesitas notificar a otros objetos de cambios en el estado.
-- **Casos de uso**: Sistemas donde múltiples objetos interactúan, como interfaces gráficas o sistemas de mensajería.
+- **Qué hace**: Centraliza la comunicación entre objetos, evitando dependencias directas entre ellos.
+- **Ejemplo**: Sistema de chat donde el servidor actúa como mediador.
+- **Ventajas**: Desacopla los objetos entre sí, facilitando el mantenimiento.
+- **Desventajas**: Puede convertirse en un cuello de botella.
+- **Casos de uso**: Sistemas donde muchos objetos interactúan.
 
 ### 18. Memento
-- **Qué hace**: Permite capturar y externalizar el estado interno de un objeto sin violar la encapsulación, para que el objeto pueda restaurarse a ese estado más tarde.
-- **Ejemplo**: Sistema de deshacer/rehacer en un editor de texto.
-- **Ventajas**:
-  - Facilita la implementación de operaciones de deshacer y rehacer.
-  - Mantiene la encapsulación del estado del objeto.
-- **Desventajas**:
-  - Puede consumir mucha memoria si se almacenan demasiados estados.
-- **Alternativas**: Usar Command si las operaciones son más importantes que el estado.
-- **Casos de uso**: Deshacer/rehacer en aplicaciones como editores de texto o software de diseño.
+- **Qué hace**: Permite guardar el estado de un objeto para restaurarlo más tarde.
+- **Ejemplo**: Función de deshacer en un editor de texto.
+- **Ventajas**: Facilita la implementación de deshacer/rehacer.
+- **Desventajas**: Puede consumir mucha memoria si se almacenan muchos estados.
+- **Casos de uso**: Funcionalidad de deshacer/rehacer.
 
 ### 19. Observer
-- **Qué hace**: Define una dependencia de uno a muchos entre objetos, de manera que cuando uno cambia de estado, todos sus dependientes son notificados.
-- **Ejemplo**: Un sistema de notificaciones en una red social, donde los seguidores son notificados de las actualizaciones.
-- **Ventajas**:
-  - Promueve el desacoplamiento entre el emisor de eventos y los suscriptores.
-  - Facilita la implementación de sistemas reactivos.
-- **Desventajas**:
-  - Los observadores pueden convertirse en puntos de cuello de botella si reciben demasiadas notificaciones.
-- **Alternativas**: Mediator si las interacciones entre objetos son más complejas.
-- **Casos de uso**: Sistemas de notificación, eventos en interfaces gráficas, sistemas de suscripciones.
+- **Qué hace**: Notifica a varios objetos cuando otro cambia de estado.
+- **Ejemplo**: Sistema de notificaciones en redes sociales.
+- **Ventajas**: Facilita la implementación de sistemas reactivos.
+- **Desventajas**: Puede crear cuellos de botella si hay demasiados observadores.
+- **Casos de uso**: Sistemas de notificaciones o eventos en interfaces gráficas.
 
 ### 20. State
-- **Qué hace**: Permite que un objeto altere su comportamiento cuando su estado interno cambia.
-- **Ejemplo**: Una máquina expendedora que cambia su comportamiento según el saldo ingresado.
-- **Ventajas**:
-  - Facilita la implementación de máquinas de estados finitos.
-  - Permite encapsular los estados y reducir el código condicional.
-- **Desventajas**:
-  - Aumenta el número de clases para representar cada estado.
-- **Alternativas**: Strategy si los cambios de comportamiento no están ligados a un estado interno.
-- **Casos de uso**: Sistemas de máquinas de estados, como una máquina de café o un videojuego.
+- **Qué hace**: Permite que un objeto cambie su comportamiento cuando cambia su estado interno.
+- **Ejemplo**: Máquina expendedora que ajusta su comportamiento según el saldo ingresado.
+- **Ventajas**: Facilita la implementación de máquinas de estados.
+- **Desventajas**: Aumenta el número de clases.
+- **Casos de uso**: Máquinas de estados, como videojuegos o máquinas expendedoras.
 
 ### 21. Strategy
-- **Qué hace**: Define una familia de algoritmos, encapsula cada uno de ellos y los hace intercambiables.
-- **Ejemplo**: Algoritmos de ordenación que pueden ser intercambiados según la situación (burbuja, quicksort, mergesort).
-- **Ventajas**:
-  - Facilita el intercambio de comportamientos sin modificar las clases que los usan.
-  - Promueve la reutilización de código y el desacoplamiento.
-- **Desventajas**:
-  - El cliente debe ser consciente de las diferentes estrategias disponibles.
-- **Alternativas**: State si los comportamientos están directamente ligados a cambios de estado.
-- **Casos de uso**: Algoritmos de ordenación, sistemas de pago con diferentes métodos, rutas en sistemas GPS.
+- **Qué hace**: Permite elegir entre diferentes algoritmos de manera dinámica.
+- **Ejemplo**: Algoritmos de ordenación (burbuja, quicksort).
+- **Ventajas**: Facilita el intercambio de comportamientos sin modificar el cliente.
+- **Desventajas**: El cliente debe conocer las estrategias disponibles.
+- **Casos de uso**: Selección de algoritmos o comportamientos dinámicos.
 
 ### 22. Template Method
-- **Qué hace**: Define el esqueleto de un algoritmo en una operación, diferiendo algunos pasos a las subclases.
-- **Ejemplo**: Clases base que definen el flujo general del proceso de construcción de objetos, permitiendo que las subclases definan detalles específicos.
-- **Ventajas**:
-  - Promueve la reutilización del código base.
-  - Facilita la implementación de algoritmos que comparten estructura común pero varían en detalles.
-- **Desventajas**:
-  - Puede ser difícil de mantener si el algoritmo base cambia frecuentemente.
-- **Alternativas**: Strategy si prefieres intercambiar comportamientos completos en lugar de diferir pasos del algoritmo.
-- **Casos de uso**: Sistemas de construcción de objetos, interfaces gráficas con pasos comunes.
+- **Qué hace**: Define el esqueleto de un algoritmo, permitiendo que las subclases implementen partes específicas.
+- **Ejemplo**: Clases base que definen el flujo general de construcción de objetos.
+- **Ventajas**: Facilita la reutilización de la lógica común.
+- **Desventajas**: Difícil de mantener si el algoritmo cambia frecuentemente.
+- **Casos de uso**: Procesos con pasos comunes que varían en detalles.
 
 ### 23. Visitor
-- **Qué hace**: Permite definir nuevas operaciones sobre una jerarquía de clases sin cambiar las clases sobre las que opera.
-- **Ejemplo**: Un sistema de impuestos donde el cálculo varía según el tipo de producto (alimentos, tecnología, etc.).
-- **Ventajas**:
-  - Facilita la adición de operaciones sin modificar las clases base.
-  - Cumple con el principio de abierto/cerrado.
-- **Desventajas**:
-  - Dificulta el mantenimiento cuando la jerarquía de clases cambia frecuentemente.
-- **Alternativas**: Usar métodos en las propias clases si las operaciones no cambian con frecuencia.
-- **Casos de uso**: Sistemas de análisis de expresiones, procesamiento de árboles de sintaxis, procesamiento de estructuras de archivos.
+- **Qué hace**: Permite añadir nuevas operaciones a una jerarquía de clases sin modificarlas.
+- **Ejemplo**: Sistema de cálculo de impuestos que varía según el tipo de producto.
+- **Ventajas**: Facilita la adición de funcionalidades sin cambiar las clases base.
+- **Desventajas**: Dificulta el mantenimiento si las clases cambian frecuentemente.
+- **Casos de uso**: Procesamiento de estructuras complejas como árboles de sintaxis.
